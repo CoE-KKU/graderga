@@ -1,12 +1,10 @@
 <?php declare(strict_types=1);
-    require_once 'conf.php';
     require_once 'connect.php';
     require_once 'init.php';
 
     function latestIncrement($db, $dbdatabase = null) {
         global $conn;
-        global $db;
-        if ($dbdatabase == null) $dbdtatabase = $db["table"];
+        if ($dbdatabase == null) $dbdtatabase = "grader.ga";
         return mysqli_fetch_array(mysqli_query($conn,"SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$dbdatabase' AND TABLE_NAME = '$db'"), MYSQLI_ASSOC)["AUTO_INCREMENT"];
     }
     
