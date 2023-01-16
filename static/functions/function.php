@@ -4,7 +4,7 @@
 
     function latestIncrement($db, $dbdatabase = null) {
         global $conn;
-        if ($dbdatabase == null) $dbdtatabase = "grader.ga";
+        if ($dbdatabase == null) $dbdatabase = "grader.ga";
         return mysqli_fetch_array(mysqli_query($conn,"SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$dbdatabase' AND TABLE_NAME = '$db'"), MYSQLI_ASSOC)["AUTO_INCREMENT"];
     }
     
