@@ -16,7 +16,7 @@
                 "author" => $_POST['author']
             ));
             
-            $id = $isCreate ? latestIncrement($dbdatabase, 'editorial') : $_GET['id'];
+            $id = $isCreate ? latestIncrement('editorial') : $_GET['id'];
 
             //INSERT INTO table (id, name, age) VALUES(1, "A", 19) ON DUPLICATE KEY UPDATE name="A", age=19
             print_r(array("ID"=>$id, "Title"=>$title, "Article"=>$article, "Properties"=>$properties));

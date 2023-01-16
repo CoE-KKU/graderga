@@ -25,7 +25,7 @@
         return $accept;
     }
     if (isLogin()) {
-        $subID = latestIncrement($dbdatabase, 'submission');
+        $subID = latestIncrement('submission');
         $userID = $_SESSION['user']->getID();
         $probID = $_POST['probID'];
         $probCodename = $_POST['probCodename'];

@@ -69,7 +69,7 @@
                 $_SESSION['error'] = "พบข้อผิดพลาดในการเข้าถึงฐานข้อมูล";
             }
         
-            $id = latestIncrement('graderga', 'user');
+            $id = latestIncrement('user');
             if ($stmt = $conn -> prepare("INSERT INTO `user` (id, username, password, displayname, email) VALUES (?,?,?,?,?)")) {
                 $stmt->bind_param('issss', $id, $user, $pass, $name, $email);
                 if (!$stmt->execute()) {

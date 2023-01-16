@@ -1,10 +1,11 @@
 <?php declare(strict_types=1);
-
+    require_once 'conf.php';
     require_once 'connect.php';
     require_once 'init.php';
 
-    function latestIncrement($dbdatabase, $db) {
+    function latestIncrement($db, $dbdatabase = null) {
         global $conn;
+        if ($dbdatabase == null) $dbdtatabase = $db['table'];
         return mysqli_fetch_array(mysqli_query($conn,"SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$dbdatabase' AND TABLE_NAME = '$db'"), MYSQLI_ASSOC)["AUTO_INCREMENT"];
     }
     

@@ -20,7 +20,7 @@
                 "accept" => $_POST['lang']
             ));
             
-            $id = $isCreate ? latestIncrement('graderga', 'problem') : $_GET['id'];
+            $id = $isCreate ? latestIncrement('problem') : $_GET['id'];
 
             $locate ="../file/judge/prob/$id/";
             if (!file_exists($locate))
