@@ -5,48 +5,50 @@ from os import path
 from Garedami.Src import Judge
 import requests
 
-try:
-    dbconnector = mysql.connector.connect(
-        host='localhost',
-	port='3306',
-        user='p0ndja',
-        password='P0ndJ@1103',
-        database='grader.ga'
-    )
-except mysql.connector.Error:
-    print("WTF WHY I CAN'T CONNECT TO DATABASE")
-    exit(0)
+dbconnector = None
+mycursor = None
+
+def DBconnect():
+    global dbconnector,mycursor
+    try:
+        dbconnector = mysql.connector.connect(
+            host='localhost',
+            port='3306',
+            user='p0ndja',
+            password='P0ndJ@1103',
+            database='lca.grader.ga'
+        )
+        mycursor = dbconnector.cursor(buffered=True)
+    except mysql.connector.Error:
+        print("WTF WHY I CAN'T CONNECT TO DATABASE")
+        exit(0)
+
+def getWaitSubmission():
+    while True:
+        try:
+            mycursor = dbconnector.cursor(buffered=True)
+            mycursor.execute("SELECT `id`,`user`,`problem`,`script` FROM `submission` WHERE `result` = 'W' ORDER BY `id`") #Get specific data from submission SQL where result is W (Wait)
+            return mycursor.fetchall()
+        except Exception as e:
+            print("[!] ERROR losing connection to database:\n", e)
+            print("[!] The system will be halted for 30 seconds")
+            time.sleep(30)
+            DBconnect()
 
 def getTimeAndMem(idTask):
-    mycursor = dbconnector.cursor(buffered=True)
     mycursor.execute(f"SELECT `time`,`memory` FROM `problem` WHERE `id` = {idTask} LIMIT 1")
     result = mycursor.fetchall()
     if (len(result)):
         return result[0][0],result[0][1]
     return -69,-420
 
-def getWaitSubmission():
-    try:
-        mycursor = dbconnector.cursor(buffered=True)
-        mycursor.execute("SELECT `id`,`user`,`problem`,`lang`,`script` FROM `submission` WHERE `result` = 'W' ORDER BY `id`") #Get specific data from submission SQL where result is W (Wait)
-        return mycursor.fetchall()
-    except Exception as e:
-        print("[!] ERROR losing connection to database:\n", e)
-        print("[!] The system will be halt for 30 seconds and will try again.")
-        time.sleep(60)
-        return getWaitSubmission()
-
 if __name__ == '__main__':
-    try:
-        mycursor = dbconnector.cursor(buffered=True)
-    except mysql.connector.Error:
-        print("WTF WHY I CAN'T CONNECT TO DATABASE")
-        exit(0)
     webLocation = "/" + path.join("var","www","grader.ga")
 
     print("Grader.py started")
 
     while(1):
+        DBconnect()
         queue = getWaitSubmission()
         if (len(queue)):
             print("Founded Waiting Queue : ",len(queue))
@@ -96,9 +98,10 @@ if __name__ == '__main__':
             dbconnector.commit()
             time.sleep(1)
         dbconnector.commit()
-        #Time sleep interval for 10 second.
+        dbconnector.close()
+        #Time sleep interval for 5 second.
         try:
-            time.sleep(10)	
+            time.sleep(5)
         except KeyboardInterrupt:
             print("Bye bye")
             exit(0)
