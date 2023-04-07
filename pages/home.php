@@ -9,7 +9,7 @@
                     <h4 class="font-weight-normal">The Computer Engineering of <b class="text-nowrap">Khon Kaen University</b><br>Student-Made grader.</h4>
                     <a class="btn btn-coekku" href="../problem/">เริ่มทำโจทย์กันเลย !</a>
                     <a class="btn btn-coekku" target="_blank" href="https://github.com/Nepumi-Jr/HowToUseGraderGa/blob/main/How%20to%20use%20Graderga.pdf">วิธีการใช้งาน Grader.ga</a>
-                    <h5>หากมีซักถามใด ๆ เพิ่มเติม สามารถติดต่อแอดมินได้ที่ <a href="mailto:palapon@kkumail.com">palapon@kkumail.com</a></h5>
+                    <p>หากมีซักถามใด ๆ เพิ่มเติม สามารถติดต่อแอดมินได้ที่ <a href="mailto:palapon@kkumail.com">palapon@kkumail.com</a></p>
                     <?php
                     if ($stmt = $conn -> prepare("SELECT `codename`,`id`,`name`,`properties` FROM `problem` WHERE JSON_EXTRACT(`properties`,'$.hide') = 0 AND UNIX_TIMESTAMP() - JSON_EXTRACT(`properties`,'$.last_hide_updated') <= 604800 AND JSON_EXTRACT(`properties`,'$.last_hide_updated') > 0 ORDER BY JSON_EXTRACT(`properties`,'$.last_hide_updated') DESC limit 7")) {
                         $stmt->execute();
