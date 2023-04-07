@@ -3,8 +3,9 @@
     <div class="row">
         <div class="col-12 col-md-8">
             <div class="d-none d-md-block" style="padding-top: 8vh;"></div>
-            <div class="d-flex justify-content-center"><img src="https://s3.p0nd.dev/file/400d5/kbankqr.jpg" class="mb-3" width="300" /></div>
+            <div class="d-flex justify-content-center"><img src="https://i.ibb.co/tb6g1hf/kbankqr.jpg" class="mb-3" width="300" /></div>
             <h5 class="text-center font-weight-bold">Palapon Soontornpas / พลภณ สุนทรภาส</h5>
+            <p class="text-center"><a href="mailto:palapon@kkumail.com">palapon@kkumail.com</a></p>
             <p class="text-center">
                 <b>KBank</b> : <code style="color: green;">084-3-24454-8</code> <small class="text-muted">*ไม่ใช่เบอร์โทรศัพท์</small><br>
                 <b>SCB</b> : <code style="color: purple;">551-442288-3</code><br>
