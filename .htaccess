@@ -1,4 +1,5 @@
 RewriteEngine On
+#RewriteRule ^(.*)$ https://www.pondja.com/maintenance [R=307,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 

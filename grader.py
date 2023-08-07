@@ -16,7 +16,7 @@ def DBconnect():
             port='3306',
             user='p0ndja',
             password='P0ndJ@1103',
-            database='lca.grader.ga'
+            database='grader.ga'
         )
         mycursor = dbconnector.cursor(buffered=True)
     except mysql.connector.Error:
@@ -27,7 +27,7 @@ def getWaitSubmission():
     while True:
         try:
             mycursor = dbconnector.cursor(buffered=True)
-            mycursor.execute("SELECT `id`,`user`,`problem`,`script` FROM `submission` WHERE `result` = 'W' ORDER BY `id`") #Get specific data from submission SQL where result is W (Wait)
+            mycursor.execute("SELECT `id`,`user`,`problem`,`lang`,`script` FROM `submission` WHERE `result` = 'W' ORDER BY `id`") #Get specific data from submission SQL where result is W (Wait)
             return mycursor.fetchall()
         except Exception as e:
             print("[!] ERROR losing connection to database:\n", e)
@@ -70,11 +70,14 @@ if __name__ == '__main__':
             #All testcases will be here
 
             srcCode = ""
-
-            with open(userCodeLocation,"r") as f:
-                srcCode = f.read()
-
+            try:
+                with open(userCodeLocation,"r") as f:
+                    srcCode = f.read()
+            except FileNotFoundError:
+                judgeResult = ("MissingFile",0,100,0,0,"Can't Locate User File")
+            #print(srcCode)
             probTime,probMem = getTimeAndMem(probID)
+            #print((probID,lang,probTestcaseLocation,srcCode,probTime,probMem))
 
             if probTime < 0:
                 judgeResult = ("WebError",0,100,0,0,"Web API Down")
