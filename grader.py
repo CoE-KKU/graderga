@@ -4,23 +4,39 @@ import urllib3
 from os import path
 from Garedami.Src import Judge
 import requests
+import json
 
 dbconnector = None
 mycursor = None
 
+def checkSettings():
+    # Check if settings is exist.
+    if not path.isfile("settings.json"):
+        json = """{
+        "database": {
+            "host":     "<<IP>>",
+            "username": "<<USERNAME>>",
+            "password": "<<PASSWORD>>",
+            "database": "<<DATABASE>>"
+        }
+    }"""
+        
+        f = open("settings.json","w")
+        f.write(str(json))
+        print("/!\ Please config your connection settings first. /!\\")
+        exit(0)
+        
 def DBconnect():
-    global dbconnector,mycursor
+    global dbconnector, mycursor
+    checkSettings()
+
+    #Loading settings.json
+    f = json.loads(open("settings.json", "r").read())
     try:
-        dbconnector = mysql.connector.connect(
-            host='localhost',
-            port='3306',
-            user='p0ndja',
-            password='P0ndJ@1103',
-            database='grader.ga'
-        )
+        dbconnector = mysql.connector.connect(host=f['database']['host'],user=f['database']['username'],password=f['database']['password'],database=f['database']['database'])
         mycursor = dbconnector.cursor(buffered=True)
-    except mysql.connector.Error:
-        print("WTF WHY I CAN'T CONNECT TO DATABASE")
+    except Exception as e:
+        print("[!] ERROR on establishing database:\n", e)
         exit(0)
 
 def getWaitSubmission():
