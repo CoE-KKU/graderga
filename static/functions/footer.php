@@ -34,7 +34,7 @@
 
     function checkResult() {
         setTimeout(function() {
-            ($('[data-wait=true]').each(function(index) {
+            ($('[data-wait=true]')?.first(function(index) {
                 var subID = $(this).data('sub-id');
                 $(this).load('../pages/prob_result.php?id='+subID+"&score");
                 if ($(this).html().indexOf("รอผลตรวจ...") === -1) {
@@ -45,7 +45,7 @@
                 }
             }));
             checkResult();
-        }, 1100)
+        }, 1500);
     }
 
     document.addEventListener('DOMContentLoaded', (event) => {
