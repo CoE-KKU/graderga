@@ -157,6 +157,7 @@
     }
 
     function isDarkmode() {
+        if ((int) date("dm") >= 2512 && (int) date("dm") <= 3112) return true;
         return (isset($_SESSION['dark_mode'])) ? $_SESSION['dark_mode'] : false;
     }
 
