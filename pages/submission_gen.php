@@ -28,8 +28,8 @@
                 
                 <?php if ($row['user'] == $wholookthis || isAdmin()) {
                     if ($row['comment'] != "End of Test" && trim($row['comment']) != "")
-                        echo "Judge Response:<br><pre><code>" . trim($row['comment']) . "</code></pre>";
-                    echo "Submitted Code: ";
+                        echo "<br>Judge Response:<br><pre><code>" . trim($row['comment']) . "</code></pre>";
+                    echo "<br>Submitted Code: ";
                     
                     if (file_exists($row['script'])) {
                         echo "<br><pre><code>";
