@@ -177,7 +177,7 @@
                                                 foreach($files as $f) {
                                                     $count++;
                                                     $filename = str_replace($path, "", $f);
-                                                    echo "<li><a href='".bucket_encrypting(str_replace("..","",$f))."' target='_blank'>in</a> <a href='" .bucket_encrypting(str_replace("..","",str_replace(".in",".sol",$f))). "' target='_blank'>sol</a></li>";
+                                                    echo "<li><a href='/bucket/".bucket_encrypting(str_replace("..","",$f))."' target='_blank'>in</a> <a href='/bucket/" .bucket_encrypting(str_replace("..","",str_replace(".in",".sol",$f))). "' target='_blank'>sol</a></li>";
                                                 }
                                                 echo "</ol>";
                                             ?>
