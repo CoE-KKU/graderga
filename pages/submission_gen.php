@@ -17,7 +17,8 @@
                 $subRuntime = $row['runningtime']; //ms
                 $subMemory = $row['memory'] ? $row['memory'] . " MB": randomErrorMessage(); //MB
                 $subUploadtime = $row['uploadtime']; ?>
-                <p>Timestamp: <?php echo $subUploadtime; ?>
+                
+                Timestamp: <?php echo $subUploadtime; ?>
                 <br>User: <code><?php echo $subUser; ?></code>
                 <br>Problem: <a href="../problem/<?php echo $subProb; ?>"><?php $spb = new Problem($subProb); echo $spb->display(); ?></a>
                 <br>Language: <code><?php echo $subLang; ?></code>
@@ -25,7 +26,6 @@
                 <br>Running Time: <code><?php echo $subRuntime; ?> ms</code>
                 <!-- <br>Memory: <code><?php //echo $subMemory; ?></code> -->
                 
-                </p>
                 <?php if ($row['user'] == $wholookthis || isAdmin()) {
                     if ($row['comment'] != "End of Test" && trim($row['comment']) != "")
                         echo "Judge Response:<br><pre><code>" . trim($row['comment']) . "</code></pre>";
@@ -39,7 +39,7 @@
                         echo ($r);
                         echo "</code></pre>";
                         ?>
-                            <span class="text-right mb-0 mt-0"><small><a href="<?php echo $row['script']; ?>" download="<?php echo $subID.".".pathinfo($row['script'], PATHINFO_EXTENSION);?>" target="_blank">Download Code <i class="fas fa-download"></i></a></small></span>
+                            <div class="text-right mb-0 mt-0"><small><a href="<?php echo $row['script']; ?>" download="<?php echo $subID.".".pathinfo($row['script'], PATHINFO_EXTENSION);?>" target="_blank">Download Code <i class="fas fa-download"></i></a></small></div>
                         <?php
                     } else {
                         echo "<span class='text-danger'>MISSING FILE</span>";
