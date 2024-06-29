@@ -4,11 +4,11 @@
         <div class="col-12 col-md-8">
             <div class="d-none d-md-block" style="padding-top: 8vh;"></div>
             <div class="d-flex justify-content-center"><img src="https://i.ibb.co/tb6g1hf/kbankqr.jpg" class="mb-3" width="300" /></div>
-            <b>Promptpay</b> : <code style="color: blue;">090-8508007</code><br>
+            <span class="text-center"><b>Promptpay</b> : <code style="color: blue;">090-8508007</code></span><br>
             <h5 class="text-center font-weight-bold">Palapon Soontornpas / พลภณ สุนทรภาส</h5>
             <p class="text-center">ส่งเอกสารการโอนเงิน Donate ได้ที่
-                <br>- <a href="mailto:palapon@kkumail.com">palapon@kkumail.com</a>
-                <br>- Messenger: <a href="https://m.me/p0ndja" target="_blank">Palapon Soontornpas</a>
+                <br>Email: <a href="mailto:palapon@kkumail.com">palapon@kkumail.com</a>
+                <br>Messenger: <a href="https://m.me/p0ndja" target="_blank">Palapon Soontornpas</a>
             </p>
         </div>
         <div class="col-12 col-md-4">
