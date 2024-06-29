@@ -28,12 +28,10 @@
                 </p>
                 <?php if ($row['user'] == $wholookthis || isAdmin()) {
                     if ($row['comment'] != "End of Test") {
-                        echo "Judge Response:<br><pre>" . $row['comment'] . "</pre>";
+                        echo "Judge Response:<br><code>" . $row['comment'] . "</code>";
                     }
                     echo "Submitted Code: ";
-                    if (file_exists($row['script'])) { ?>
-                        <span class="text-right mb-0 mt-0"><small><a href="<?php echo $row['script']; ?>" download="<?php echo $subID.".".pathinfo($row['script'], PATHINFO_EXTENSION);?>" target="_blank">Download Code <i class="fas fa-download"></i></a></small></span>
-                    <?php }
+                    
                     if (file_exists($row['script'])) {
                         echo "<br><pre><code>";
                         $r = file_get_contents($row['script']);
@@ -41,6 +39,9 @@
                         $r = str_replace(">", "&gt;", $r); //Make browser don't think < is the end of html tag
                         echo ($r);
                         echo "</code></pre>";
+                        ?>
+                            <span class="text-right mb-0 mt-0"><small><a href="<?php echo $row['script']; ?>" download="<?php echo $subID.".".pathinfo($row['script'], PATHINFO_EXTENSION);?>" target="_blank">Download Code <i class="fas fa-download"></i></a></small></span>
+                        <?php
                     } else {
                         echo "<span class='text-danger'>MISSING FILE</span>";
                     } ?>
