@@ -27,9 +27,8 @@
                 
                 </p>
                 <?php if ($row['user'] == $wholookthis || isAdmin()) {
-                    if ($row['comment'] != "End of Test") {
-                        echo "Judge Response:<br><pre><code>" . $row['comment'] . "</code></pre>";
-                    }
+                    if ($row['comment'] != "End of Test" && trim($row['comment']) != "")
+                        echo "Judge Response:<br><pre><code>" . trim($row['comment']) . "</code></pre>";
                     echo "Submitted Code: ";
                     
                     if (file_exists($row['script'])) {
