@@ -16,25 +16,29 @@
             <div class="table-responsive">
             <h4 class="font-weight-bold text-center text-coekku">Donator</h4>
             <p class="text-center text-muted"><small>ทุกคนที่บริจาคจะได้รับ <text class="rainbow font-weight-bold">ชื่อสีรุ้ง</text> (ถาวร)</small></p>
-                <table class="table table-sm table-hover w-100" id="submissionTable" style="max-height: 60vh;">
-                    <thead>
-                        <tr class="text-nowrap me">
-                            <th scope="col" class="font-weight-bold text-coekku">User</th>
-                            <th scope="col" class="font-weight-bold text-coekku">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-nowrap">
-                        <?php
-                            $json = json_decode(file_get_contents("https://api.p0nd.dev/p0ndja/donation_grader"), true);
-                            $amount = 0;
-                            foreach ($json as $j) {
-                                $time = strtotime($j['timestamp']); $date = date('d M Y', $time);                                
-                                echo "<tr><th scope='row'>".$date."</th><td>".$j['name']."</td><td>".$j['value']." ฿</td></tr>";
-                                $amount += $j['value'];
-                            }
-                        ?>
-                    </tbody>
-                </table>
+            <div style="position: relative; height: 300px; overflow: auto; display: block;">
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover w-100" id="submissionTable">
+                        <thead>
+                            <tr class="text-nowrap me">
+                                <th scope="col" class="font-weight-bold text-coekku">Date</th>
+                                <th scope="col" class="font-weight-bold text-coekku">User</th>
+                                <th scope="col" class="font-weight-bold text-coekku">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-nowrap">
+                            <?php
+                                $json = json_decode(file_get_contents("https://api.p0nd.dev/p0ndja/donation_grader"), true);
+                                $amount = 0;
+                                foreach ($json as $j) {
+                                    $time = strtotime($j['timestamp']); $date = date('d M Y', $time);                                
+                                    echo "<tr><th scope='row'>".$date."</th><td>".$j['name']."</td><td>".$j['value']." ฿</td></tr>";
+                                    $amount += $j['value'];
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <p class="text-center mt-3">รวมยอดเงินทั้งสิ้น <?php echo $amount; ?> บาท</p>
         </div>
