@@ -22,7 +22,7 @@
                         "email"=>$email,
                         "name"=>$row['displayname']
                     );
-                    $sendMail = sendEmail($email, "สวัสดี " . htmlspecialchars($row['displayname']) . "! คุณได้ทำการส่งคำร้องขอรีเซ็ตรหัสผ่านเพื่อเข้าใช้งานเว็บไซต์ grader.ga", "http://grader.pondja.com/static/functions/resetpassword/resetpassword.html", $var);
+                    $sendMail = sendEmail($email, "สวัสดี " . htmlspecialchars($row['displayname']) . "! คุณได้ทำการส่งคำร้องขอรีเซ็ตรหัสผ่านเพื่อเข้าใช้งานเว็บไซต์ grader.pondja.com", "http://grader.pondja.com/static/functions/resetpassword/resetpassword.html", $var);
                     if ($sendMail) {
                         $_SESSION['swal_success'] = "รีเซ็ตรหัสผ่านสำเร็จ";
                         $_SESSION['swal_success_msg'] = "กรุณาตรวจสอบที่อีเมลของท่านเพื่อดำเนินการต่อ";

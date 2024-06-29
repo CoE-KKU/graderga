@@ -17,8 +17,8 @@
 <meta property="og:image" content="https://grader.pondja.com/static/elements/logo/logo.jpg" />
     <meta property="og:image:width" content="194" />
     <meta property="og:image:height" content="194" />
-    <meta property="og:title" content="Grader.ga" />
-    <title>Grader.ga</title>
+    <meta property="og:title" content="Garedami" />
+    <title>Garedami</title>
     <meta property="og:description" content="The Computer Engineering of Khon Kaen University Student-Made grader." />
     <meta name="twitter:card" content="summary"></meta>
     <link rel="image_src" href="https://grader.pondja.com/static/elements/logo/logo.jpg" />
