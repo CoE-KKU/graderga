@@ -39,3 +39,5 @@ RewriteRule ^register/$ pages/page_loader.php?target=register.php
 Options +Indexes
 IndexOptions +FancyIndexing
 DirectoryIndex .index.php .index.html index.php index.html .redirect.html redirect.html landing.html landing.php .landing.html .landing.php .redirect.php redirect.php
+
+RewriteRule ^bucket/(.*)$ static/functions/bucket.php?target=$1 [B,L,QSA]
