@@ -1,4 +1,4 @@
-<div class="container mb-3" style="padding-top: 88px; min-height: 100vh !important;" id="container">
+<div class="container mb-3" style="padding-top: 88px; min-height: 80vh !important;" id="container">
     <h1 class="display-4 font-weight-bold text-center text-coekku">Donation</h1>
     <div class="row">
         <div class="col-12 col-md-8">
