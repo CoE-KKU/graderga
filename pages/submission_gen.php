@@ -30,7 +30,7 @@
                     <br>
                     <div class="d-flex mb-0">
                         <div class="flex-grow-1 mb-0">
-                            <span class='font-weight-bold'>Source Code</span>
+                            <span class='font-weight-bold'>Source Code:</span>
                         </div>
                         <div class="text-right mb-0 mt-0">
                             <small><a href="/bucket/<?php echo bucket_encrypting(str_replace("..","",$row['script'])); ?>" download="<?php echo $subID.".".pathinfo($row['script'], PATHINFO_EXTENSION);?>" target="_blank">Download Code <i class="fas fa-download"></i></a></small>
@@ -38,7 +38,7 @@
                     </div>
                     <?php 
                     if (file_exists($row['script'])) {
-                        echo "<br><pre><code>";
+                        echo "<pre><code>";
                         $r = file_get_contents($row['script']);
                         $r = str_replace("<", "&lt;", $r); //Make browser don't think < is the start of html tag
                         $r = str_replace(">", "&gt;", $r); //Make browser don't think < is the end of html tag
