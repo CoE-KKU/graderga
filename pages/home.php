@@ -18,7 +18,6 @@
                         ?>
                     </h1>
                     <h4 class="font-weight-normal">Computer Engineering's Student-Made grader.</h4>
-                    <a class="btn btn-coekku" href="../problem/">เริ่มทำโจทย์กันเลย !</a>
                     <a class="btn btn-outline z-depth-0 btn-rounded btn-coekku mt-3 mb-3" href="../problem/">Getting Started</a>
                     <?php
                     if ($stmt = $conn -> prepare("SELECT `codename`,`id`,`name`,`properties` FROM `problem` WHERE JSON_EXTRACT(`properties`,'$.hide') = 0 AND UNIX_TIMESTAMP() - JSON_EXTRACT(`properties`,'$.last_hide_updated') <= 604800 AND JSON_EXTRACT(`properties`,'$.last_hide_updated') > 0 ORDER BY JSON_EXTRACT(`properties`,'$.last_hide_updated') DESC limit 7")) {
