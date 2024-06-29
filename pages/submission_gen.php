@@ -18,18 +18,18 @@
                 $subMemory = $row['memory'] ? $row['memory'] . " MB": randomErrorMessage(); //MB
                 $subUploadtime = $row['uploadtime']; ?>
                 
-                Timestamp: <?php echo $subUploadtime; ?>
-                <br>User: <code><?php echo $subUser; ?></code>
-                <br>Problem: <a href="../problem/<?php echo $subProb; ?>"><?php $spb = new Problem($subProb); echo $spb->display(); ?></a>
-                <br>Language: <code><?php echo $subLang; ?></code>
-                <br>Result: <code <?php if ($row['result'] == 'W') echo "data-sub-id='$id' data-wait=true"; ?>><?php echo $subResult; ?></code>
-                <br>Running Time: <code><?php echo $subRuntime; ?> ms</code>
+                <span class='font-weight-bold'>Timestamp:</span> <?php echo $subUploadtime; ?>
+                <br><span class='font-weight-bold'>User:</span> <code><?php echo $subUser; ?></code>
+                <br><span class='font-weight-bold'>Problem:</span> <a href="../problem/<?php echo $subProb; ?>"><?php $spb = new Problem($subProb); echo $spb->display(); ?></a>
+                <br><span class='font-weight-bold'>Language:</span> <code><?php echo $subLang; ?></code>
+                <br><span class='font-weight-bold'>Result:</span> <code <?php if ($row['result'] == 'W') echo "data-sub-id='$id' data-wait=true"; ?>><?php echo $subResult; ?></code>
+                <br><span class='font-weight-bold'>Running Time:</span> <code><?php echo $subRuntime; ?> ms</code>
                 <!-- <br>Memory: <code><?php //echo $subMemory; ?></code> -->
                 
                 <?php if ($row['user'] == $wholookthis || isAdmin()) {
                     if ($row['comment'] != "End of Test" && trim($row['comment']) != "")
-                        echo "<br>Judge Response:<br><pre><code>" . trim($row['comment']) . "</code></pre>";
-                    echo "<br>Submitted Code: ";
+                        echo "<br><span class='font-weight-bold'>Judge Response:</span><br><pre><code>" . trim($row['comment']) . "</code></pre>";
+                    echo "<br><span class='font-weight-bold'>Source Code</span>:";
                     
                     if (file_exists($row['script'])) {
                         echo "<br><pre><code>";
