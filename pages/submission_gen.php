@@ -39,7 +39,7 @@
                         echo ($r);
                         echo "</code></pre>";
                         ?>
-                            <div class="text-right mb-0 mt-0"><small><a href="<?php echo $row['script']; ?>" download="<?php echo $subID.".".pathinfo($row['script'], PATHINFO_EXTENSION);?>" target="_blank">Download Code <i class="fas fa-download"></i></a></small></div>
+                        <div class="text-right mb-0 mt-0"><small><a href="/<?php echo bucket_encrypting(str_replace("..","",$row['script'])); ?>" download="<?php echo $subID.".".pathinfo($row['script'], PATHINFO_EXTENSION);?>" target="_blank">Download Code <i class="fas fa-download"></i></a></small></div>
                         <?php
                     } else {
                         echo "<span class='text-danger'>MISSING FILE</span>";
