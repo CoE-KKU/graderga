@@ -2,6 +2,26 @@
     require_once 'connect.php';
     require_once 'init.php';
 
+    function bucket_decrypting($encrypted) {
+        $ciphering = "AES-128-CTR";
+        $iv_length = openssl_cipher_iv_length($ciphering);
+        $options = 0;
+        $decryption_iv = 'Created by p0ndja';
+        $decryption_key = "66aa08fb703595986de262136e2574521d2e38d7";
+        $decryption = openssl_decrypt($encrypted, $ciphering, $decryption_key, $options, $decryption_iv);
+        return $decryption;
+    }
+
+    function bucket_encrypting($simple_string) {
+        $ciphering = "AES-128-CTR";
+        $iv_length = openssl_cipher_iv_length($ciphering);
+        $options = 0;
+        $encryption_iv = 'Created by p0ndja';
+        $encryption_key = "66aa08fb703595986de262136e2574521d2e38d7";
+        $encryption = openssl_encrypt($simple_string, $ciphering, $encryption_key, $options, $encryption_iv);
+        return $encryption;
+    }
+
     function latestIncrement($db, $dbdatabase = null) {
         global $conn;
         $conn->prepare("SET information_schema_stats_expiry = 0;")->execute();
