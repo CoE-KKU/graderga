@@ -28,7 +28,7 @@
                 </p>
                 <?php if ($row['user'] == $wholookthis || isAdmin()) {
                     if ($row['comment'] != "End of Test") {
-                        echo "Judge Response:<br><code>" . $row['comment'] . "</code>";
+                        echo "Judge Response:<br><pre><code>" . $row['comment'] . "</code></pre>";
                     }
                     echo "Submitted Code: ";
                     
