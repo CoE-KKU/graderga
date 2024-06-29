@@ -141,7 +141,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <form method="post" action="../pages/problem_user_submit.php" enctype="multipart/form-data">
-                            <h5 class="font-weight-bold text-coekku">Submission</h5>
+                        <h5 class="font-weight-bold text-coekku">Submission&nbsp;<a href="../static/elements/Garedami.pdf" target="_blank"><i class="fas fa-question-circle"></i></a></h5>
                             <div class="custom-file mb-2">
                                 <input type="hidden" name="probID" value="<?php echo $id; ?>"/>
                                 <input type="hidden" name="probCodename" value="<?php echo $codename; ?>"/>

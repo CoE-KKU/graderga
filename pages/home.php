@@ -1,22 +1,32 @@
-<?php if (in_array((int) date("dm"), array(2212,1103,810))) { ?><div id="emojiRain"></div><script src="../vendor/emojirain.js"></script><?php } ?>
+<?php if (in_array((int) date("dm"), array(2212,1103,810))) { ?>
+    <!-- <div id="emojiRain"></div><script src="../vendor/emojirain.js"></script> -->
+<?php } ?>
 <div class="homepage" style="padding-top: 64px; min-height: 100vh;">
     <div class="container-fluid h-100 w-100">
         <div class="h-100 w-100 row align-items-center">
             <div class="d-none d-lg-block col-lg-1"></div>
             <div class="col-12 col-lg-5">
                 <div class="bounceInDown animated">
-                    <h1 class="font-weight-bold text-coekku display-4">Grader.ga</h1>
-                    <h4 class="font-weight-normal">The Computer Engineering of <b class="text-nowrap">Khon Kaen University</b><br>Student-Made grader.</h4>
+                    <h1 class="font-weight-bold text-coekku display-4">
+                        <?php
+                            $randomNumber = mt_rand(1, 100);
+                            if ($randomNumber >= 90) {
+                                echo "ガレダミ";
+                            } else {
+                                echo "Garedami";
+                            }
+                        ?>
+                    </h1>
+                    <h4 class="font-weight-normal">Computer Engineering's Student-Made grader.</h4>
                     <a class="btn btn-coekku" href="../problem/">เริ่มทำโจทย์กันเลย !</a>
-                    <a class="btn btn-coekku" target="_blank" href="https://github.com/Nepumi-Jr/HowToUseGraderGa/blob/main/How%20to%20use%20Graderga.pdf">วิธีการใช้งาน Grader.ga</a>
-                    <p>หากมีซักถามใด ๆ เพิ่มเติม สามารถติดต่อแอดมินได้ที่ <a href="mailto:palapon@kkumail.com">palapon@kkumail.com</a></p>
+                    <a class="btn btn-outline z-depth-0 btn-rounded btn-coekku mt-3 mb-3" href="../problem/">Getting Started</a>
                     <?php
                     if ($stmt = $conn -> prepare("SELECT `codename`,`id`,`name`,`properties` FROM `problem` WHERE JSON_EXTRACT(`properties`,'$.hide') = 0 AND UNIX_TIMESTAMP() - JSON_EXTRACT(`properties`,'$.last_hide_updated') <= 604800 AND JSON_EXTRACT(`properties`,'$.last_hide_updated') > 0 ORDER BY JSON_EXTRACT(`properties`,'$.last_hide_updated') DESC limit 7")) {
                         $stmt->execute();
                         $result = $stmt->get_result();
                         if ($result->num_rows > 0) { ?>
                             <div class="bounceInLeft delay-1s animated">
-                            <h5 class="rainbow mt-3">โจทย์มาใหม่!!</h5>
+                            <h5 class="rainbow mt-3">New Problem!!!</h5>
                             <div class="table-responsive">
                                 <table class="table table-hover table-sm d-table" id="problemTable">
                                     <thead>
