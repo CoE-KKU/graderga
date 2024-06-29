@@ -26,9 +26,17 @@
                 <br><span class='font-weight-bold'>Running Time:</span> <code><?php echo $subRuntime; ?> ms</code>
                 <!-- <br>Memory: <code><?php //echo $subMemory; ?></code> -->
                 
-                <?php if ($row['user'] == $wholookthis || isAdmin()) {
-                    echo "<br><span class='font-weight-bold'>Source Code</span>:";
-                    
+                <?php if ($row['user'] == $wholookthis || isAdmin()) { ?>
+                    <br>
+                    <div class="d-flex mb-0">
+                        <div class="flex-grow-1 mb-0">
+                            <span class='font-weight-bold'>Source Code</span>
+                        </div>
+                        <div class="text-right mb-0 mt-0">
+                            <small><a href="/bucket/<?php echo bucket_encrypting(str_replace("..","",$row['script'])); ?>" download="<?php echo $subID.".".pathinfo($row['script'], PATHINFO_EXTENSION);?>" target="_blank">Download Code <i class="fas fa-download"></i></a></small>
+                        </div>
+                    </div>
+                    <?php 
                     if (file_exists($row['script'])) {
                         echo "<br><pre><code>";
                         $r = file_get_contents($row['script']);
@@ -37,7 +45,6 @@
                         echo ($r);
                         echo "</code></pre>";
                         ?>
-                        <div class="text-right mb-0 mt-0"><small><a href="/bucket/<?php echo bucket_encrypting(str_replace("..","",$row['script'])); ?>" download="<?php echo $subID.".".pathinfo($row['script'], PATHINFO_EXTENSION);?>" target="_blank">Download Code <i class="fas fa-download"></i></a></small></div>
                         <?php
                         if ($row['comment'] != "End of Test" && trim($row['comment']) != "")
                         echo "<span class='font-weight-bold'>Judge Response:</span><br><pre><code>" . trim($row['comment']) . "</code></pre>";
