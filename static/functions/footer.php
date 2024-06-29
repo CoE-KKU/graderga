@@ -27,32 +27,44 @@
         }
         $(this).trigger("change");
     });
-    
+    let checkResult_event = undefined;
     // Tooltips Initialization
     $(document).ready(function () {
-        if ($('.mdb-select')[0]) $('.mdb-select').materialSelect();
+        $('.mdb-select').materialSelect();
         $('[data-toggle="tooltip"]').tooltip();
         $('.btn-floating').unbind('click');
         $('.fixed-action-btn').unbind('click');
         pdfNiceLook();
         attachFooter();
-        checkResult();
+        checkResult_event = setInterval(function() {
+            checkResult();
+        }, 2000);
     });
 
-    function checkResult() {
-        setTimeout(function() {
-            ($('[data-wait=true]').each(function(index) {
-                var subID = $(this).data('sub-id');
-                $(this).load('../pages/prob_result.php?id='+subID+"&score");
-                if ($(this).html().indexOf("รอผลตรวจ...") === -1) {
-                    $(this).removeAttr("data-wait");
-                    console.log("Finished Juding " + subID + " -> " + $(this).html());  
-                } else {
-                    console.log("Waiting for Juding " + subID);  
+    async function checkResult() {
+        let submissionWaitlist = $('[data-wait=true]').map(function() {
+            return $(this).data('sub-id');
+        }).sort();
+        if (submissionWaitlist.length > 0) {
+            let subID = submissionWaitlist[0];
+            console.log("Checking Result for ID " + subID);
+            await $.ajax({
+                url: '../pages/prob_result.php?id=' + subID + "&time",
+                success: function (data) {
+                    if (data.indexOf("รอผลตรวจ...") === -1) {
+                        $('[data-sub-id=' + subID + ']').removeAttr("data-wait");
+                        console.log("Finished Juding " + subID);
+                        $('[data-sub-id=' + subID + ']').html(data);
+                    } else {
+                        console.log("Waiting for Juding " + subID);
+                    }
                 }
-            }));
-            checkResult();
-        }, 1500);
+            });
+        } else {
+            //TODO: Will load more submission later.
+            console.log("No more wait submission.");
+            clearInterval(checkResult_event);
+        }
     }
 
     document.addEventListener('DOMContentLoaded', (event) => {
