@@ -15,8 +15,8 @@
             <tbody class="text-nowrap">
                 <?php
                 $userID = isLogin() ? $_SESSION['user']->getID() : 0;
-                if ($stmt = $conn -> prepare("WITH LatestSubmissions AS (SELECT s.problem AS probID, s.result AS subResult, ROW_NUMBER() OVER (PARTITION BY s.problem ORDER BY s.id DESC) AS rn FROM submission s WHERE s.user = ?) SELECT p.id AS probID, p.name AS probName, p.properties AS probProp, p.codename AS probCode, l.subResult FROM problem p LEFT JOIN LatestSubmissions l ON p.id = l.probID AND l.rn = ?;")) {
-                    $stmt->bind_param('ii', $userID,$userID);
+                if ($stmt = $conn -> prepare("WITH LatestSubmissions AS (SELECT s.problem AS probID, s.result AS subResult, ROW_NUMBER() OVER (PARTITION BY s.problem ORDER BY s.id DESC) AS rn FROM submission s WHERE s.user = ?) SELECT p.id AS probID, p.name AS probName, p.properties AS probProp, p.codename AS probCode, l.subResult FROM problem p LEFT JOIN LatestSubmissions l ON p.id = l.probID AND l.rn = 1;")) {
+                    $stmt->bind_param('i', $userID);
                     $stmt->execute();
                     $result = $stmt->get_result();
                     if ($result->num_rows > 0) {
